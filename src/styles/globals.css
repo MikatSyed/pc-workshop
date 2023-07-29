@@ -9,6 +9,21 @@ body{
 	box-sizing: border-box;
 }
 
+.green{
+	color: green;
+	font-size: 15px;
+	font-weight: bold;
+}
+.text{
+	
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.card{
+	margin: 1rem;
+}
+
 /* components/ProductCard.module.css */
 .product-card {
 	border: 1px solid #e8e8e8;
@@ -125,6 +140,9 @@ ul{
 @media(max-width: 574px){
   .footer-col{
     /* width: 100%; */
+}
+.card{
+	margin-left: 100px;
 }
 }
 

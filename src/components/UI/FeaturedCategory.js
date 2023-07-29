@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
-import Link from 'next/link';
+import { Card, Col, Row } from 'antd';
 import { useRouter } from 'next/router';
 const gridStyle = {
   width: '25%',
@@ -56,11 +55,31 @@ const App = () => {
     const router = useRouter();
  return(
     <>
-<Card title="Featured Category">   
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: "30px",
+          margin: "30px 0px",
+        }}
+      >
+        Featured Category
+      </h1>
+      <Row justify="center">        
   {
-    items.map((item)=> <Card.Grid key={item.key} style={gridStyle} onClick={()=> router.push(`/${item.value}`)}>{item.label}</Card.Grid> )
+    items.map((item)=> 
+    <Col xs={20} sm={20} md={8} lg={6} xl={5}  className="card">
+    <Card key={item.key} style={{
+      width: 300,
+      fontWeight:'bold'
+    }} onClick={()=> router.push(`/${item.value}`)}>{item.label}</Card> 
+      </Col>
+    )
   }
-</Card>
+
+      
+
+      </Row>
+
     </>
  )
 
