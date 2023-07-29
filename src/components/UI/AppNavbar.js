@@ -9,10 +9,14 @@ import {
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 import Link from "next/link";
-
+import { useSession,signOut  } from "next-auth/react"
+import { useRouter } from "next/router";
 const { Header } = Layout;
 
 const AppNavbar = () => {
+  const router = useRouter()
+  const { data: session } = useSession();
+  console.log('17',session);
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -142,10 +146,18 @@ const AppNavbar = () => {
           <Col xs={0} sm={0} md={4}>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
               <Menu.Item key="4">
-                <Button  style={{ marginRight: "10px" }}>
+               {
+                session?.user?.email ? <> 
+                <Button  style={{ marginRight: "10px" }} onClick={() => signOut()}>
+                  Sign out
+                </Button>
+               </> : <> <Link href="/login">
+                <Button  style={{ marginRight: "10px" }} onClick={() => router.push('/login')}>
                   Sign in
                 </Button>
-                <Button  type="primary">PC Builder</Button>
+                </Link></>
+               }
+              <Button  type="primary" onClick={() => router.push('/pc-builder')}>PC Builder</Button>
               </Menu.Item>
             </Menu>
           </Col>

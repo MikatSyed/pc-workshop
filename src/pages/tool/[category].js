@@ -4,11 +4,11 @@ import RootLayout from "@/components/Layout/RootLayout";
 import Image from "next/image";
 import { Rate } from 'antd';
 import Link from "next/link";
-import ProductCard from "@/components/Common/ProductCard";
 
-const Category = ({ products }) => {
+
+const PcBuilderCategory = ({ products }) => {
   products.map((product)=> {
-    console.log(product.productName);
+    console.log(product);
   })
 
   return (
@@ -16,7 +16,7 @@ const Category = ({ products }) => {
   
 {  products.map((product)=> 
   <Link href={`/product/${product._id}`}>
-    {/* <Card className="product-card" key={product._id}>
+    <Card className="product-card" key={product._id}>
   <Row gutter={16} align="middle">
     <Col lg={4} xs={24}>
       <Image
@@ -37,8 +37,8 @@ const Category = ({ products }) => {
       <Button type="primary">Add To Builder</Button>
     </Col>
   </Row>
-</Card> */}
-<ProductCard product={product}/>
+</Card>
+
   </Link>
 
 )}
@@ -48,25 +48,15 @@ const Category = ({ products }) => {
   );
 };
 
-export default Category;
+export default PcBuilderCategory;
 
-Category.getLayout = function getLayout(page) {
+PcBuilderCategory.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export const getStaticPaths = async () => {
-  // Fetch all products (without any category filter)
-  const res = await fetch("http://localhost:4000/products");
-  const products = await res.json();
-  console.log('59',products);
-  const paths = products?.data?.map((product) => ({
-    params: { category: product.category }, // Assuming your product objects have a unique "_id"
-  }));
-  console.log("63", paths);
-  return { paths, fallback: false };
-};
 
-export const getStaticProps = async (context) => {
+
+export const getServerSideProps = async (context) => {
   const { params } = context;
   console.log("32", params);
   // Fetch products based on the dynamic category from the "productId" param

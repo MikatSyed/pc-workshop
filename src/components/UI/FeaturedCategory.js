@@ -67,7 +67,7 @@ const App = () => {
       <Row justify="center">        
   {
     items.map((item)=> 
-    <Col xs={20} sm={20} md={8} lg={6} xl={5}  className="card">
+    <Col xs={20} sm={20} md={8} lg={6} xl={5}  className="card" key={item.key}>
     <Card key={item.key} style={{
       width: 300,
       fontWeight:'bold'
