@@ -3,6 +3,7 @@ import { Button, Card, Col, Row, Space } from "antd";
 import RootLayout from "@/components/Layout/RootLayout";
 import Image from "next/image";
 import { Rate } from 'antd';
+import Link from "next/link";
 
 const Category = ({ products }) => {
   products.map((product)=> {
@@ -13,7 +14,8 @@ const Category = ({ products }) => {
   <>
   
 {  products.map((product)=> 
-  <Card className="product-card">
+  <Link href={`/product/${product._id}`}>
+    <Card className="product-card" key={product._id}>
   <Row gutter={16} align="middle">
     <Col lg={4} xs={24}>
       <Image
@@ -27,7 +29,7 @@ const Category = ({ products }) => {
       <h2>{product.productName}</h2>
       <h3>{product.category}</h3>
       <p>{product.status}</p>
-      <Rate allowHalf defaultValue={product.averageRating} />
+      <Rate allowHalf disabled defaultValue={product.averageRating} />
     </Col>
     <Col lg={6} xs={24} className="price-btn">
       <h2>${product.price}</h2>
@@ -35,6 +37,7 @@ const Category = ({ products }) => {
     </Col>
   </Row>
 </Card>
+  </Link>
 
 )}
        
@@ -51,13 +54,13 @@ Category.getLayout = function getLayout(page) {
 
 export const getStaticPaths = async () => {
   // Fetch all products (without any category filter)
-  const res = await fetch("http://localhost:3000/api/products");
+  const res = await fetch("http://localhost:4000/products");
   const products = await res.json();
-
-  const paths = products?.product?.map((product) => ({
+  console.log('59',products);
+  const paths = products?.data?.map((product) => ({
     params: { category: product.category }, // Assuming your product objects have a unique "_id"
   }));
-  console.log("25", paths);
+  console.log("63", paths);
   return { paths, fallback: false };
 };
 
@@ -66,13 +69,13 @@ export const getStaticProps = async (context) => {
   console.log("32", params);
   // Fetch products based on the dynamic category from the "productId" param
   const res = await fetch(
-    `http://localhost:3000/api/products?category=${params.category}`
+    `http://localhost:4000/products?category=${params.category}`
   );
   const data = await res.json();
   console.log("36", data);
   return {
     props: {
-      products: data?.product,
+      products: data?.data,
     },
   };
 };
