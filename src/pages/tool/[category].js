@@ -107,7 +107,7 @@ export const getServerSideProps = async (context) => {
   const { params } = context;
 
   const res = await fetch(
-    `http://localhost:4000/products?category=${params.category}`
+    `https://pc-workshop-backend.vercel.app//products?category=${params.category}`
   );
   const data = await res.json();
 

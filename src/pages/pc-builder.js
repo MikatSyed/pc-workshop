@@ -121,7 +121,7 @@ export const getServerSideProps = async (context) => {
   
     // Fetch products based on the dynamic category from the "productId" param
     const res = await fetch(
-      'http://localhost:4000/category'
+      'https://pc-workshop-backend.vercel.app//category'
     );
     const categories = await res.json();
    

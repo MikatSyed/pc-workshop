@@ -31,8 +31,8 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async ()=> {
-  const res1 = await  fetch('http://localhost:4000/products/random');
-  const res2 = await  fetch('http://localhost:4000/category')
+  const res1 = await  fetch('https://pc-workshop-backend.vercel.app//products/random');
+  const res2 = await  fetch('https://pc-workshop-backend.vercel.app//category')
   const products = await res1.json();
   const categories= await res2.json();
   
