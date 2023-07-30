@@ -28,8 +28,8 @@ const ProductCard = ({product}) => {
     ]}
   >
     <Meta
-      title={product.productName}
-      description={ <Rate allowHalf disabled defaultValue={product.averageRating} />}
+      title={product.product_name}
+      description={ <Rate allowHalf disabled defaultValue={product.average_rating} />}
       
     />
     

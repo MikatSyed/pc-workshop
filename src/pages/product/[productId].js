@@ -1,4 +1,5 @@
 // pages/ProductDetailsPage.js
+import ReviewCard from '@/components/Common/ReviewCard';
 import RootLayout from '@/components/Layout/RootLayout';
 import { Row, Col, Typography, Rate, Descriptions } from 'antd';
 import Image from 'next/image';
@@ -7,6 +8,10 @@ const { Title, Text } = Typography;
 
 
 const ProductDetailsPage = ({data}) => {
+ const res = data.map((p)=>{
+    return p;
+  })
+  console.log(res);
   // const keyFeaturesData = Object.entries(data.keyFeatures).map(([key, value]) => ({
   //   key,
   //   value,
@@ -15,14 +20,23 @@ const ProductDetailsPage = ({data}) => {
  
   return (
    <>
-     {data?.map((d)=> {
+     {data.length && data?.map((d)=> {
      return  <div style={{ padding: '20px' }} key={d._id}>
        <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
-          <Image src={d.image} alt={d.productName} width={400} height={400} />
+          <Image src={d.image} alt={d.product_name} width={400} height={400} />
         </Col>
         <Col xs={24} md={12}>
-          <Title level={3}>{d.productName}</Title>
+        <Title level={3}>{d.product_name}</Title>
+        <br/>
+
+        <Text strong>Individual Rating: </Text>
+          <Rate allowHalf defaultValue={d.individual_rating} />
+          <br />
+          <Text strong>Average Rating: </Text>
+          <Rate allowHalf disabled defaultValue={d.average_rating} />
+          <br/>
+         
           <Text strong>Category: </Text>
           <Text>{d.category}</Text>
           <br />
@@ -40,64 +54,65 @@ const ProductDetailsPage = ({data}) => {
           <Descriptions column={2} bordered>     
               <Descriptions.Item>
               <Text strong>Brand: </Text>
-               <Text>{d.keyFeatures.brand}</Text>
+               <Text>{d.key_features.brand}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
               <Text strong>Model: </Text>
-               <Text>{d.keyFeatures.model}</Text>
+               <Text>{d.key_features.model}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Cpu Socket: </Text>
-               <Text>{d.keyFeatures.cpuSocket}</Text>
+              <Text strong>Specification: </Text>
+               <Text>{d.key_features.specification}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Chipset: </Text>
-               <Text>{d.keyFeatures.chipset}</Text>
+              <Text strong>Type: </Text>
+               <Text>{d.key_features.type}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Memory: </Text>
-               <Text>{d.keyFeatures.memory}</Text>
+              <Text strong>Resolution: </Text>
+               <Text>{d.key_features.resolution}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Pcie Slots: </Text>
-               <Text>{d.keyFeatures.pcieSlots}</Text>
+              <Text strong>Voltage: </Text>
+               <Text>{d.key_features.voltage}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Storage: </Text>
-               <Text>{d.keyFeatures.storage}</Text>
+              <Text strong>Port: </Text>
+               <Text>{d?.key_features?.ports[0]} ,{d?.key_features?.ports[1]} ,{d?.key_features?.ports[2]}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Usb Ports: </Text>
-               <Text>{d.keyFeatures.usbPorts}</Text>
+              <Text strong>Cache: </Text>
+               <Text>{d.key_features.cache}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Networking: </Text>
-               <Text>{d.keyFeatures.networking}</Text>
+              <Text strong>Socket Type: </Text>
+               <Text>{d.key_features.socket_type}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>RgbLighting: </Text>
-               <Text>{d.keyFeatures.rgbLighting}</Text>
+              <Text strong>Architecture: </Text>
+               <Text>{d.key_features.architecture}</Text>
               </Descriptions.Item>
          
           </Descriptions>
           <br />
-          <Text strong>Individual Rating: </Text>
-          <Rate allowHalf defaultValue={d.individualRating} />
-          <br />
-          <Text strong>Average Rating: </Text>
-          <Rate allowHalf disabled defaultValue={d.averageRating} />
+         
           {/* <Text>({d.reviews} Reviews)</Text> */}
         </Col>
-      </Row>    
+      </Row> 
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      {d?.reviews?.map((review, index) => (
+        <ReviewCard key={index} {...review}  />
+      ))}
+    </div>   
     </div>}
    )}
   

@@ -3,10 +3,7 @@ import { Button, Card, Col, Row } from 'antd';
 import { useRouter } from 'next/router';
 import RootLayout from '@/components/Layout/RootLayout';
 
-const gridStyle = {
-  width: '25%',
-  textAlign: 'center',
-};
+
 const items = [
     {
       key: '1',
@@ -92,3 +89,20 @@ export default PcBuilderPage;
 PcBuilderPage.getLayout = function getLayout(page) {
     return <RootLayout>{page}</RootLayout>;
   };
+
+export const getServerSideProps = async (context) => {
+    const { params } = context;
+    console.log("32", params);
+    // Fetch products based on the dynamic category from the "productId" param
+    const res = await fetch(
+      `http://localhost:4000/products?category=${params.category}`
+    );
+    const data = await res.json();
+    console.log("36", data);
+    return {
+      props: {
+        products: data?.data,
+      },
+    };
+  };
+  
