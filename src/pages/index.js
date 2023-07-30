@@ -4,7 +4,7 @@ import FeaturedProduct from "@/components/UI/FeaturedProduct";
 import Head from "next/head";
 
 
-const HomePage = ({products}) => {
+const HomePage = ({products,categories}) => {
 
   return (
     <>
@@ -17,7 +17,7 @@ const HomePage = ({products}) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <FeaturedCategory/>
+      <FeaturedCategory categories={categories}/>
       <FeaturedProduct products={products}/>
     </>
   );
@@ -29,14 +29,16 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async ()=> {
-  const res = await  fetch('http://localhost:4000/products/random');
-  const data = await res.json();
-  console.log(data);
+  const res1 = await  fetch('http://localhost:4000/products/random');
+  const res2 = await  fetch('http://localhost:4000/category')
+  const products = await res1.json();
+  const categories= await res2.json();
+  
 
   return {
-    props: {
-      products: data
-    },
+    props:  {products,categories}
+    ,
     revalidate: 10
   }
 }
+

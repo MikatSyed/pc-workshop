@@ -2,55 +2,13 @@ import React from 'react';
 import { Button, Card, Col, Row } from 'antd';
 import { useRouter } from 'next/router';
 import RootLayout from '@/components/Layout/RootLayout';
+import SelectedProduct from '@/components/UI/SelectedProduct';
+import CompleteBuild from '@/components/UI/CompleteButton';
 
 
-const items = [
-    {
-      key: '1',
-      label: "CPU",
-      value: "cpu"
-    },
-    {
-      key: '2',
-      label: "Motherboard",
-      value: "motherboard"
-    ,      
-    },
 
-    {
-      key: '3',
-      label:"RAM",
-      value:"ram"     
-    },
-    {
-      key: '4',
-      label:"Power Supply Unit",
-      value:"power-supply-unit"     
-    },
-    {
-      key: '5',
-      label:"Storage Device",
-      value:"storage-device"     
-    },
-    {
-      key: '6',
-      label:"Monitor",
-      value:"monitor"     
-    },
-    {
-      key: '7',
-      label:"Keyboard",
-      value:"keyboard"     
-    },
-    {
-      key: '8',
-      label:"Mouse",
-      value:"mouse"     
-    }
-  
-   
-  ];
-const PcBuilderPage = () => {
+const PcBuilderPage = ({categories}) => {
+
     const router = useRouter();
  return(
     <div style={{ marginTop: '30px' }} >
@@ -63,23 +21,28 @@ const PcBuilderPage = () => {
     >
       PC Builder - Build Your Own Computer - PC Workshop
     </h1>
-
+    { 
+  categories?.categoryProductCount?.map((item,index) => (
     <Row justify="center" gutter={[16, 16]}>
-      {items.map((item) => (
-        <Col key={item.key} span={22}>
-          <Card className="product-card">
+      
+        <Col span={22}>
+          <Card className="product-card"  key={index}>
             <Row justify="center">
               <Col span={24}>
-                {item.label}
+             <h3>{item?.category} ({item?.count})</h3>
+             <SelectedProduct category={item.category}/>
               </Col>
               <Col span={24} className="price-btn">
-                <Button type="primary" onClick={()=> router.push(`/tool/${item.value}`)}>Select</Button>
+                <Button type="primary" onClick={()=> router.push(`/tool/${item.category}`)}>Select</Button>
               </Col>
             </Row>
           </Card>
         </Col>
-      ))}
+    
     </Row>
+    
+      ))}
+     <CompleteBuild/>
   </div>
  )
 
@@ -95,14 +58,12 @@ export const getServerSideProps = async (context) => {
     console.log("32", params);
     // Fetch products based on the dynamic category from the "productId" param
     const res = await fetch(
-      `http://localhost:4000/products?category=${params.category}`
+      'http://localhost:4000/category'
     );
-    const data = await res.json();
-    console.log("36", data);
+    const categories = await res.json();
+   
     return {
-      props: {
-        products: data?.data,
-      },
+      props: {categories},
     };
   };
   

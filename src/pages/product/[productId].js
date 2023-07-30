@@ -8,19 +8,12 @@ const { Title, Text } = Typography;
 
 
 const ProductDetailsPage = ({data}) => {
- const res = data.map((p)=>{
-    return p;
-  })
-  console.log(res);
-  // const keyFeaturesData = Object.entries(data.keyFeatures).map(([key, value]) => ({
-  //   key,
-  //   value,
-  // }));
-  // console.log('14',keyFeaturesData);
+ 
+  
  
   return (
    <>
-     {data.length && data?.map((d)=> {
+     { data?.map((d)=> {
      return  <div style={{ padding: '20px' }} key={d._id}>
        <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
@@ -131,7 +124,7 @@ export const getStaticPaths = async () => {
   // Fetch all products (without any category filter)
   const res = await fetch("http://localhost:4000/products");
   const product = await res.json();
-  console.log('83',product);
+  
   const paths = product?.data?.map((product) => ({
     params: { productId: product._id }, // Assuming your product objects have a unique "_id"
   }));
@@ -141,13 +134,13 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { params } = context;
-  console.log("32", params);
+
   // Fetch products based on the dynamic category from the "productId" param
   const res = await fetch(
     `http://localhost:4000/product/details/${params.productId}`
   );
   const data = await res.json();
-  console.log("36", data);
+  
   return {
     props: {
       data: data?.data,

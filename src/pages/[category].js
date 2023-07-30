@@ -7,10 +7,7 @@ import Link from "next/link";
 import ProductCard from "@/components/Common/ProductCard";
 
 const Category = ({ products }) => {
-  products.map((product) => {
-    console.log(product);
-  });
-
+ 
   return (
     <>
       <Row justify="center">
