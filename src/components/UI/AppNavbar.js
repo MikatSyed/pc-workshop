@@ -14,9 +14,9 @@ import { useRouter } from "next/router";
 const { Header } = Layout;
 
 const AppNavbar = () => {
-  const router = useRouter();
+ 
   const { data: session } = useSession();
-  // console.log('17',session);
+ 
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -31,9 +31,9 @@ const AppNavbar = () => {
       key: "1",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.antgroup.com"
+          href="http://localhost:3000/Cpu"
         >
           CPU / Processor
         </Link>
@@ -43,9 +43,9 @@ const AppNavbar = () => {
       key: "2",
       label: (
         <Link
-          target="_blank"
+          
           rel="noopener noreferrer"
-          href="https://www.aliyun.com"
+          href="http://localhost:3000/Motherboard"
         >
           Motherboard
         </Link>
@@ -56,11 +56,11 @@ const AppNavbar = () => {
       key: "3",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Ram"
         >
-          RAM
+          Ram
         </Link>
       ),
     },
@@ -68,9 +68,9 @@ const AppNavbar = () => {
       key: "4",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Psu"
         >
           Power Supply Unit
         </Link>
@@ -80,9 +80,9 @@ const AppNavbar = () => {
       key: "5",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Sd"
         >
           Storage Device
         </Link>
@@ -92,9 +92,9 @@ const AppNavbar = () => {
       key: "6",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Monitor"
         >
           Monitor
         </Link>
@@ -105,9 +105,9 @@ const AppNavbar = () => {
       key: "7",
       label: (
         <Link
-          target="_blank"
+         
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Mouse"
         >
           Mouse
         </Link>
@@ -117,9 +117,9 @@ const AppNavbar = () => {
       key: "8",
       label: (
         <Link
-          target="_blank"
+        
           rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
+          href="http://localhost:3000/Keyboard"
         >
           Keyboard
         </Link>

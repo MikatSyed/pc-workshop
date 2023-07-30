@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    cpu: null,
-    motherboard: null,
-    ram: null,
-    psu: null,
-    sd: null,
-    monitor: null,
+    Cpu: null,
+    Motherboard: null,
+    Ram: null,
+    Psu: null,
+    Sd: null,
+    Monitor: null,
     keyboard: null,
-    mouse: null,
+    Mouse: null,
 };
 
 export const pcBuilderSlice = createSlice({
@@ -18,28 +18,29 @@ export const pcBuilderSlice = createSlice({
     initialState,
     reducers: {
         addCpu: (state, action) => {
-            return { ...state, cpu: action.payload };
+            console.log('21',action.payload);
+            return { ...state, Cpu: action.payload };
         },
         addMotherboard: (state, action) => {
-            return { ...state, motherboard: action.payload };
+            return { ...state, Motherboard: action.payload };
         },
         addRam: (state, action) => {
-            return { ...state, ram: action.payload };
+            return { ...state, Ram: action.payload };
         },
         addPsu: (state, action) => {
-            return { ...state, psu: action.payload };
+            return { ...state, Psu: action.payload };
         },
         addSdCard: (state, action) => {
-            return { ...state, sd: action.payload };
+            return { ...state, Sd: action.payload };
         },
         addMonitor: (state, action) => {
-            return { ...state, monitor: action.payload };
+            return { ...state, Monitor: action.payload };
         },
         addKeyboard: (state, action) => {
-            return { ...state, keyboard: action.payload };
+            return { ...state, Keyboard: action.payload };
         },
         addMouse: (state, action) => {
-            return { ...state, mouse: action.payload };
+            return { ...state, Mouse: action.payload };
         },
         removeAll: () => {
             return { processor: null, motherboard: null, ram: null, psu: null, sdCard: null, monitor: null };
@@ -49,6 +50,6 @@ export const pcBuilderSlice = createSlice({
 
 export const { addCpu, addMotherboard, addRam, addPsu, addSdCard,addKeyboard, addMonitor,addMouse, removeAll } = pcBuilderSlice.actions;
 
-export const selectCount = (state) => state.pcBuilder;
+
 
 export default pcBuilderSlice.reducer;

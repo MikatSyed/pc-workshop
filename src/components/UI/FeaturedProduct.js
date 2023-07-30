@@ -1,12 +1,6 @@
-import { Card, Col, Row,Avatar, Rate } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import Link from "next/link";
-import Image from "next/image";
+import { Row } from "antd";
 import ProductCard from "../Common/ProductCard";
 
-
-
-const { Meta } = Card;
 const AllNews = ({ products }) => {
   return (
     <>
@@ -20,7 +14,7 @@ const AllNews = ({ products }) => {
         Featured Product
       </h1>
       <Row justify="center">
-        {products?.data?.map((product) => ( <ProductCard  product={product}/>))}
+        {products?.data?.map((product) => ( <ProductCard  product={product} key={product._id}/>))}
       </Row>
     </>
   );

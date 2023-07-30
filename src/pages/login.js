@@ -13,8 +13,7 @@ const LoginPage = () => {
   const [
     createUserWithEmailAndPassword,
     user,
-    loading,
-    error,
+   
   ] = useCreateUserWithEmailAndPassword(auth);
   console.log(user);
   if(user){
@@ -36,9 +35,9 @@ const LoginPage = () => {
       <div className={styles.form}>
         <h3>LOGIN</h3>
         <div className={styles.social_icons}>
-          <GoogleOutlined onClick={() => signIn("google",{callbackUrl:"http://localhost:3000/"})}/> 
-          <FacebookOutlined onClick={() => signIn("facebook",{callbackUrl:"http://localhost:3000/"})}/> 
-          <GithubOutlined onClick={() => signIn("github",{callbackUrl:"http://localhost:3000/"})}/>
+          <GoogleOutlined onClick={() => signIn("google",{callbackUrl:"/"})}/> 
+          <FacebookOutlined onClick={() => signIn("facebook",{callbackUrl:"/"})}/> 
+          <GithubOutlined onClick={() => signIn("github",{callbackUrl:"/"})}/>
         </div>
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>

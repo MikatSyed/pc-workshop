@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function CompleteBuild() {
     const dispatch = useDispatch();
-    const { cpu, motherboard, ram, psu, sd, monitor, keyboard,mouse } = useSelector(
+    const { Cpu, Motherboard, Ram, Psu, Sd, Monitor, Keyboard,Mouse } = useSelector(
         (state) => state.pcBuilder
       );
 
@@ -21,7 +21,7 @@ export default function CompleteBuild() {
             size="large"
             type="primary"
             shape="round"
-            disabled={!cpu || !motherboard || !ram || !psu || !sd || !monitor || !keyboard || !mouse }
+            disabled={!Cpu || !Motherboard || !Ram || !Psu || !Sd || !Monitor || !Keyboard || !Mouse }
             onClick={handleComplete}
         >
             Complete Build

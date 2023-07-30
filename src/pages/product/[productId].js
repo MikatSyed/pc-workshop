@@ -1,4 +1,4 @@
-// pages/ProductDetailsPage.js
+
 import ReviewCard from '@/components/Common/ReviewCard';
 import RootLayout from '@/components/Layout/RootLayout';
 import { Row, Col, Typography, Rate, Descriptions } from 'antd';
@@ -77,31 +77,35 @@ const ProductDetailsPage = ({data}) => {
 
               <Descriptions.Item>
               <Text strong>Port: </Text>
-               <Text>{d?.key_features?.ports[0]} ,{d?.key_features?.ports[1]} ,{d?.key_features?.ports[2]}</Text>
+               <Text>{d.key_features.port}</Text>
               </Descriptions.Item>
 
               <Descriptions.Item>
-              <Text strong>Cache: </Text>
-               <Text>{d.key_features.cache}</Text>
+              <Text strong>Capacity: </Text>
+               <Text>{d.key_features.capacity}</Text>
               </Descriptions.Item>
 
-              <Descriptions.Item>
-              <Text strong>Socket Type: </Text>
-               <Text>{d.key_features.socket_type}</Text>
-              </Descriptions.Item>
+             
 
-              <Descriptions.Item>
-              <Text strong>Architecture: </Text>
-               <Text>{d.key_features.architecture}</Text>
-              </Descriptions.Item>
+            
          
           </Descriptions>
           <br />
          
-          {/* <Text>({d.reviews} Reviews)</Text> */}
+          
         </Col>
       </Row> 
+      <h1
+      style={{
+        textAlign: 'center',
+        fontSize: '30px',
+        margin: '30px 0px',
+      }}
+    >
+      Reviews
+    </h1>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+     
       {d?.reviews?.map((review, index) => (
         <ReviewCard key={index} {...review}  />
       ))}
@@ -122,7 +126,7 @@ ProductDetailsPage.getLayout = function getLayout(page) {
 
 export const getStaticPaths = async () => {
   // Fetch all products (without any category filter)
-  const res = await fetch("http://localhost:4000/products");
+  const res = await fetch("https://pc-workshop-backend.vercel.app/products");
   const product = await res.json();
   
   const paths = product?.data?.map((product) => ({
@@ -137,7 +141,7 @@ export const getStaticProps = async (context) => {
 
   // Fetch products based on the dynamic category from the "productId" param
   const res = await fetch(
-    `http://localhost:4000/product/details/${params.productId}`
+    `https://pc-workshop-backend.vercel.app/product/details/${params.productId}`
   );
   const data = await res.json();
   

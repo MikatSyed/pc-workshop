@@ -1,9 +1,7 @@
 import React from "react";
-import { Button, Card, Col, Row, Space } from "antd";
+import {  Row } from "antd";
 import RootLayout from "@/components/Layout/RootLayout";
-import Image from "next/image";
-import { Rate } from "antd";
-import Link from "next/link";
+
 import ProductCard from "@/components/Common/ProductCard";
 
 const Category = ({ products }) => {
@@ -28,7 +26,7 @@ Category.getLayout = function getLayout(page) {
 
 export const getStaticPaths = async () => {
   // Fetch all products (without any category filter)
-  const res = await fetch("http://localhost:4000/products");
+  const res = await fetch("https://pc-workshop-backend.vercel.app/products");
   const products = await res.json();
   console.log("59", products);
   const paths = products?.data?.map((product) => ({
@@ -43,7 +41,7 @@ export const getStaticProps = async (context) => {
   console.log("32", params);
   // Fetch products based on the dynamic category from the "productId" param
   const res = await fetch(
-    `http://localhost:4000/products?category=${params.category}`
+    `https://pc-workshop-backend.vercel.app/products?category=${params.category}`
   );
   const data = await res.json();
   console.log("36", data);
