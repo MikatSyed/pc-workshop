@@ -18,7 +18,7 @@ export const pcBuilderSlice = createSlice({
     initialState,
     reducers: {
         addCpu: (state, action) => {
-            console.log('21',action.payload);
+            
             return { ...state, Cpu: action.payload };
         },
         addMotherboard: (state, action) => {

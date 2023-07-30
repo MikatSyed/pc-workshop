@@ -118,7 +118,7 @@ PcBuilderPage.getLayout = function getLayout(page) {
 
 export const getServerSideProps = async (context) => {
     const { params } = context;
-    console.log("32", params);
+  
     // Fetch products based on the dynamic category from the "productId" param
     const res = await fetch(
       'http://localhost:4000/category'

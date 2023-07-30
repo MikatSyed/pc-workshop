@@ -4,11 +4,11 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 const RemoveButton = ({category}) => {
-    console.log(category);
+ 
     const dispatch = useDispatch();
 
     const removeToBuilder = () => {
-        console.log(category);
+    
         switch (category) {
             case "Cpu":
                 dispatch(addCpu(null));

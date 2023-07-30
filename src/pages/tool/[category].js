@@ -16,8 +16,7 @@ const PcBuilderCategory = ({ products }) => {
   const dispatch = useDispatch();
 
     const addToBuilder = (product) => {
-      console.log(product,'19');
-      console.log(product?.category,'16');
+    
         switch (product.category) {
             case "Cpu":
                 dispatch(addCpu(product));

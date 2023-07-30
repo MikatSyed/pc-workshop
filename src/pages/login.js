@@ -15,7 +15,7 @@ const LoginPage = () => {
     user,
    
   ] = useCreateUserWithEmailAndPassword(auth);
-  console.log(user);
+
   if(user){
     router.push('/');
   }

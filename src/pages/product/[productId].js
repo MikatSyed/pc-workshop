@@ -132,7 +132,7 @@ export const getStaticPaths = async () => {
   const paths = product?.data?.map((product) => ({
     params: { productId: product._id }, // Assuming your product objects have a unique "_id"
   }));
-  console.log("87", paths);
+
   return { paths, fallback: false };
 };
 

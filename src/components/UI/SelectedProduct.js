@@ -38,7 +38,7 @@ export default function SelectedProduct({ category }) {
 
   if (product) {
     const { image, product_name,category } = product;
-    console.log({category});
+  
 
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
