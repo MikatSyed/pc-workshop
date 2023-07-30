@@ -4,7 +4,7 @@ import Link from 'next/link';
 const { Meta } = Card;
 const ProductCard = ({ product }) => {
   return (
-    <div key={product._id}>
+    <div >
       <>
         <Link href={`/product/${product._id}`}>
           <Col xs={20} sm={20} md={8} lg={6} xl={5} className="card" key={product._id}>
@@ -23,9 +23,10 @@ const ProductCard = ({ product }) => {
                 </div>
               }
               actions={[
-                <span className="text">{product.category}</span>,
-                <span className={product.status === 'In Stock' ? 'green' : 'red'}>{product.status}</span>,
-                <span className="text">${product.price}</span>,
+                <span className="text" key="1">{product.category}</span>,
+                <span className={product.status === 'In Stock' ? 'green' : 'red'} key="2">{product.status}</span>,
+                <span className="text" key="3">${product.price}</span>,
+                
               ]}
             >
               <Meta
