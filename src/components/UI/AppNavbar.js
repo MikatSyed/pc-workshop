@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { Layout, Menu, Button, Drawer, Row, Col } from "antd";
 import {
   HomeOutlined,
-  UserOutlined,
-  SettingOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
 const { Header } = Layout;
+import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
 
 const AppNavbar = () => {
  
@@ -26,14 +34,14 @@ const AppNavbar = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const items = [
+  const navItems = [
     {
       key: "1",
       label: (
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Cpu"
+          href="/Cpu"
         >
           CPU / Processor
         </Link>
@@ -45,7 +53,7 @@ const AppNavbar = () => {
         <Link
           
           rel="noopener noreferrer"
-          href="http://localhost:3000/Motherboard"
+          href="/Motherboard"
         >
           Motherboard
         </Link>
@@ -58,7 +66,7 @@ const AppNavbar = () => {
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Ram"
+          href="/Ram"
         >
           Ram
         </Link>
@@ -70,7 +78,7 @@ const AppNavbar = () => {
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Psu"
+          href="/Psu"
         >
           Power Supply Unit
         </Link>
@@ -82,7 +90,7 @@ const AppNavbar = () => {
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Sd"
+          href="/Sd"
         >
           Storage Device
         </Link>
@@ -94,7 +102,7 @@ const AppNavbar = () => {
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Monitor"
+          href="/Monitor"
         >
           Monitor
         </Link>
@@ -107,7 +115,7 @@ const AppNavbar = () => {
         <Link
          
           rel="noopener noreferrer"
-          href="http://localhost:3000/Mouse"
+          href="/Mouse"
         >
           Mouse
         </Link>
@@ -119,13 +127,30 @@ const AppNavbar = () => {
         <Link
         
           rel="noopener noreferrer"
-          href="http://localhost:3000/Keyboard"
+          href="/Keyboard"
         >
           Keyboard
         </Link>
       ),
     },
   ];
+
+  const items = [
+    getItem(<Link href="/">Home</Link>,null, <MailOutlined />),
+    getItem('Components', 'sub2', <AppstoreOutlined />, [
+      getItem(<Link href="/Cpu">Cpu</Link>),
+      getItem(<Link href="/Motherboard">Motherboard</Link>),
+      getItem(<Link href="/Ram">Ram</Link>),
+      getItem(<Link href="/Psu">Power Supply Unit</Link>),
+      getItem(<Link href="/Sd">Storage Device</Link>),
+      getItem(<Link href="/Monitor">Monitor</Link>),
+      getItem(<Link href="/Keyboard">Keyboard</Link>),
+      getItem(<Link href="/Mouse">Mouse</Link>),
+     
+    ]),
+
+  ];
+  
 
   return (
     <Layout className="layout">
@@ -151,12 +176,14 @@ const AppNavbar = () => {
                   Home
                 </Menu.Item>
               </Link>
-              <Menu.Item key="2" icon={<UserOutlined />}>
-                <Dropdown
-                  menu={{
-                    items,
-                  }}
-                >
+              <Menu.Item key="2" icon={<AppstoreOutlined />}>
+              <Dropdown overlay={
+                  <Menu>
+                    {navItems.map(item => (
+                      <Menu.Item key={item.key}>{item.label}</Menu.Item>
+                    ))}
+                  </Menu>
+                }>
                   <a onClick={(e) => e.preventDefault()}>
                     <Space>
                       Components
@@ -167,18 +194,14 @@ const AppNavbar = () => {
               </Menu.Item>
               <Menu.Item key="3" >
               <Link href="/pc-builder">
-                  <Button type="primary">PC Builder</Button>
+                  <Button type="primary" >PC Builder</Button>
                 </Link>
                 </Menu.Item>
-            </Menu>
-          </Col>
-
-          <Col xs={0} sm={0} md={5}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-              <Menu.Item key="4">
+                <Menu.Item key="4">
                 {session?.user?.email ? (
                   <>
                     <Button
+                      type="primary"  danger 
                       style={{ marginRight: "10px" }}
                       onClick={() => signOut()}
                     >
@@ -193,44 +216,65 @@ const AppNavbar = () => {
                   </>
                 )}
               </Menu.Item>
-              {/* <Menu.Item key="5">
-                <Link href="/pc-builder">
-                  <Button type="primary">PC Builder</Button>
-                </Link>
-              </Menu.Item> */}
             </Menu>
           </Col>
 
-          <Col xs={2} sm={2} md={0}>
-            <Button type="primary" onClick={showDrawer}>
+        
+
+          <Col xs={4} sm={4} md={0}>
+            <Button type="primary" onClick={showDrawer} >
               <MenuOutlined />
             </Button>
           </Col>
+
         </Row>
         <Drawer
           title="Menu"
           placement="right"
-          onClick={onClose}
           onClose={onClose}
           visible={visible}
         >
-          <Menu mode="vertical" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="1" icon={<HomeOutlined />}>
-              Home
-            </Menu.Item>
-            <Menu.Item key="2" icon={<UserOutlined />}>
-              Profile
-            </Menu.Item>
-            <Menu.Item key="3" icon={<SettingOutlined />}>
-              Settings
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Button type="primary" style={{ marginRight: "10px" }}>
-                Sign in
+            <Menu
+     
+      style={{
+        width: 256,
+      }}
+      defaultSelectedKeys={['1']}
+      defaultOpenKeys={['sub1']}
+      mode="inline"
+      items={items}
+      onClick={onClose}
+    >
+      </Menu>
+      <Row  gutter={[8, 8]} style={{marginLeft:'20px'}}>
+            <Col>
+             <Link href="/pc-builder">
+             <Button  type="primary" ghost   onClick={onClose}>
+               Add To Builder
               </Button>
-              <Button>Sign up</Button>
-            </Menu.Item>
-          </Menu>
+             </Link>
+            </Col>
+            <Col>
+            {session?.user?.email ? (
+                <>
+                  <Button
+                  
+                    onClick={() => signOut()}
+                    type="primary" danger ghost
+                  >
+                    Sign out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href="/login">
+                    <Button  type="primary"  ghost>Sign in</Button>
+                  </Link>
+                </>
+              )}
+            </Col>
+          </Row>
+   
         </Drawer>
       </Header>
     </Layout>
@@ -238,3 +282,4 @@ const AppNavbar = () => {
 };
 
 export default AppNavbar;
+
