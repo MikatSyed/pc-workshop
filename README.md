@@ -31,10 +31,7 @@ Welcome to the PC Builder web application! This application allows users to buil
 7. **Select Products and Complete a PC**: Users can select products from different categories and add them to their PC build. Once all components are selected, the PC configuration is complete.
 
 
-## Usage
 
-1. Start the development server: `npm run dev`
-2. Open your browser and go to: `http://localhost:3000`
 
 ## Technologies Used
 
