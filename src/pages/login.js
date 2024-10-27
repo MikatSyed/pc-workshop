@@ -11,19 +11,28 @@ const LoginPage = () => {
     width: "100%",
     height: 50,
     marginBottom: 16,
+    backgroundColor: "#001529",
+    color: "#fff",
+    borderRadius: 8, // Rounded corners
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "16px",
+    fontWeight: "500",
+    gap: "10px", // Add spacing between icon and text
+    transition: "background-color 0.3s ease", 
   };
 
   return (
-    <div>
+    <div className="main">
       <Head>
         <title>Login</title>
       </Head>
       <div >  
         <div
       style={{
-        backgroundImage: `url("https://img.freepik.com/free-vector/realistic-style-technology-particle-background_23-2148426704.jpg")`, // Replace with the path to your background image
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+      
+        
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -33,7 +42,7 @@ const LoginPage = () => {
     >
       <Row justify="center" align="middle" style={{ width: "80%", minWidth: 300 }}>
         <Col xs={24} sm={16} md={12} lg={8}>
-          <Card>
+          <div>
             <Button
               icon={<GoogleOutlined />}
               
@@ -49,7 +58,7 @@ const LoginPage = () => {
             >
               Login with Github
             </Button>
-          </Card>
+          </div>
         </Col>
       </Row>
     </div>

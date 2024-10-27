@@ -14,8 +14,8 @@ const ProductDetailsPage = ({data}) => {
   return (
    <>
      { data?.map((d)=> {
-     return  <div style={{ padding: '20px' }} key={d._id}>
-       <Row gutter={[16, 16]}>
+     return  <div style={{ padding: '40px' }} key={d._id}>
+       <Row gutter={[16, 16]} style={{margin:'0 40px'}}>
         <Col xs={24} md={12}>
           <Image src={d.image} alt={d.product_name} width={400} height={400} />
         </Col>

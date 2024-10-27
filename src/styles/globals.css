@@ -25,9 +25,7 @@ body{
 	font-weight: bold;
 }
 
-.card{
-	margin: 1rem;
-}
+
 
 /* components/ProductCard.module.css */
 .product-card {
@@ -192,6 +190,21 @@ ul{
 
 }
 
+:where(.css-dev-only-do-not-override-txh9fw).ant-menu-dark .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-txh9fw).ant-menu-dark > .ant-menu .ant-menu-item-selected {
+    background-color: transparent !important;
+}
+
+
+@media screen and (min-width: 1400px) {
+	.main {
+	  max-width: 1400px;
+	  margin: 0 auto;
+	}
+  }
+
+
+  
 
 
 

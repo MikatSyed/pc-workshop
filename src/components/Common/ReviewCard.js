@@ -9,6 +9,7 @@ const ReviewCard = ({ username, rating, comment }) => {
       Rating: <Rate disabled allowHalf defaultValue={rating} />
       <h4>Comment: {comment}</h4>
     </Card>
+    
    </>
   );
 };

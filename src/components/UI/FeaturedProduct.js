@@ -14,8 +14,8 @@ const AllFeaturedProduct = ({ products }) => {
       >
         Featured Product
       </h1>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Row justify="center">
+      <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+        <Row justify="start" style={{padding:'0 10px'}}>
           {products?.data?.map((product) => (
             <ProductCard product={product} key={product._id} />
           ))}

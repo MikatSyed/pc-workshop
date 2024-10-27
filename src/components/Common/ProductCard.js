@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     <div >
       <>
         <Link href={`/product/${product._id}`}>
-          <Col xs={24} sm={24} md={8} lg={6} xl={5} className="card" key={product._id}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={5} style={{margin:'10px 16px'}} key={product._id}>
             <Card
               style={{
                 width: 300,

@@ -70,16 +70,16 @@ const FeaturedCategory = ({ categories }) => {
       style={{
         textAlign: 'center',
         fontSize: '30px',
-        margin: '30px 0px',
+        margin: '25px 0px',
       }}
     >
       Featured Category
     </h1>
-    <Row justify="center">
+    <Row justify="start" style={{padding:'0 10px',marginBottom:'30px'}}>
       {categories?.categoryProductCount?.map((item, index) => {
         const { image, label } = getCategoryInfo(item?.category);
         return (
-          <Col xs={20} sm={20} md={8} lg={6} xl={5} className="card" key={index}>
+          <Col xs={20} sm={20} md={8} lg={6} xl={5} style={{margin:'10px 16px'}} key={index}>
             <Card
               style={{
                 width: 300,
@@ -88,7 +88,7 @@ const FeaturedCategory = ({ categories }) => {
               onClick={() => push(`/${item.category}`)}
             >
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Image src={image} alt="" width={48} height={48} />
+                <Image src={image} alt="" width={60} height={60} />
                 <div style={{ textAlign: 'center' }}>
                   {label} <span>({item?.count})</span>
                 </div>

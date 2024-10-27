@@ -9,7 +9,7 @@ import AppFooter from "../UI/AppFooter";
 
 const RootLayout = ({ children }) => {
   return (
-    <Layout>
+    <Layout className="main">
      <AppNavbar/>
       <Content
         style={{
